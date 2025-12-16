@@ -90,14 +90,6 @@ Standard Huffman codes are for compression. We tweaked it for **'Asymmetric Mask
 
 ---
 
-### 五、 执行建议 (Tips for High Score)
-
-1.  **关联性 (Relevance)**：在报告中一定要多次提及“Lecture Content”（如：Referencing Shannon's 1948 paper, Rate-Distortion function $R(D)$），这直接回应了作业要求中的“relevant to content covered in class”。
-2.  **可视化 (Visualization)**：在报告和PPT中画一棵**Huffman树**，展示原本的树长什么样，为了隐私“剪枝/合并”后的树长什么样。这种直观的对比非常加分。
-3.  **数学表达 (Math)**：既然是“Information Science Theory”课程，报告中至少要列出KL散度的公式 $D_{KL}(P||Q)$ 或互信息公式 $I(X;Y)$，以此证明你的理论深度。
-
----
-
 ### 五. 结果分析与讨论 (Analysis and Discussion)
 
 #### 1. 长尾分布与隐私风险 (Data Distribution & Privacy Risk)
