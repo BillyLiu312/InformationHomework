@@ -144,12 +144,6 @@ def run_privacy_experiment():
     plt.title('Distribution of Diseases: Red bars are merged for Privacy')
     plt.gca().invert_yaxis() # 频率高的在上面
     
-    # 添加文字标注
-    plt.figtext(0.5, 0.01, 
-                f"Privacy Constraint: Merge if count < {PRIVACY_THRESHOLD_COUNT}\n"
-                f"Rare diseases (High Self-Info) share the code '{huffman_codes.get('[MASKED_DISEASE]')}'", 
-                ha="center", fontsize=10, bbox={"facecolor":"orange", "alpha":0.2, "pad":5})
-    
     plt.tight_layout()
     plt.savefig('fig/Huffman.png', dpi=300, bbox_inches='tight')
     plt.show()
