@@ -106,35 +106,50 @@ Standard Huffman codes are for compression. We tweaked it for **'Asymmetric Mask
 | **Member C** | 000... | 30% | **Presentation & Editing**: Created the PPT slides; drafted the Spotlight script; managed the final report formatting and LaTeX/PDF compilation. |
 
 ---
+这份“结果分析与讨论”是小组作业报告中最体现**理论深度**的部分。你需要结合刚才生成的图表（长尾分布图、权衡曲线图）以及代码输出的熵值，用**信息论的语言**来解释实验现象。
 
-### 五、 实验结果
-#### 1. 核心可视化结果
-运行 `Huffman.py` 后，会自动在 `fig/` 文件夹生成疾病频率分布与隐私脱敏效果可视化图：
+以下是一份可以直接插入报告（Section 4: Analysis and Discussion）的文案，包含**中文版**和**英文版**，并标注了与图表的对应关系。
 
-![疾病频率分布与隐私脱敏效果](fig/Huffman.png)
+---
 
-#### 2. 关键指标分析
-| 指标                | 数值          | 说明                     |
-|---------------------|---------------|--------------------------|
-| 原始数据熵 H(X)     | ~2.8 bits     | 原始数据的信息不确定性   |
-| 脱敏后数据熵 H(Y)   | ~1.9 bits     | 脱敏后隐私泄露风险降低   |
-| 信息损失（隐私增益）| ~0.9 bits     | 可控范围内的隐私保护代价 |
+### 五. 结果分析与讨论 (Analysis and Discussion)
 
-#### 3. 编码表特性
-- 高频非敏感项（如Flu、Common_Cold）保留唯一编码，保证数据效用；
-- 低频敏感项（如HIV、Ebola）被合并为 `[MASKED_DISEASE]` 并共享编码，避免个体重识别；
-- 最终编码表同时满足“压缩效率”与“隐私约束”双重目标。
+#### 1. 长尾分布与隐私风险 (Data Distribution & Privacy Risk)
 
-#### 4. 模型性能验证
-| 模型场景       | 准确率  | 召回率  | 隐私保护强度 |
-|----------------|---------|---------|--------------|
-| 原始数据建模   | 92.5%   | 91.8%   | 无           |
-| 脱敏后联邦建模 | 89.7%   | 88.9%   | 高（差分隐私）|
 
-#### 5. 理论价值
-- 将Huffman编码从“无损压缩”场景迁移至“隐私保护”，体现信息论的跨场景适用性；
-- 用信息熵、互信息等指标量化隐私-效用权衡，为数据脱敏提供理论依据；
-- 结合率失真理论，验证“在可接受失真范围内保留最大信息量”的隐私计算核心思想。
+![Distribution & Privacy Cut-off](fig/Huffman.png)
+*图1：基于熵约束Huffman编码的隐私脱敏效果可视化（红色为隐私保护合并项）*
+
+*   **观察 (Observation)**：
+    实验数据呈现出典型的**齐普夫分布 (Zipfian Distribution)** 特征。绝大多数样本集中在少数常见病（如流感、感冒），而大量的敏感疾病（如HIV、埃博拉）位于分布的“长尾”部分。
+*   **信息论解释 (Theoretical Interpretation)**：
+    根据自信息量公式 $I(x) = -\log p(x)$，位于长尾部分的罕见事件具有极高的自信息量。在隐私攻击中，高自信息量意味着高**唯一性 (Uniqueness)**，攻击者极易通过这些独特的特征从数据集中重识别出特定个体（Fingerprinting Attack）。
+*   **策略分析 (Strategy Analysis)**：
+    我们的算法在 $k=10$ 处设定了“熵截断”阈值。如图中红色柱状所示，所有样本量不足 10 的类别被强制合并。这在物理上消除了由于数据稀疏性带来的高特异性风险，确保了没有任何一个个体的特征是“独一无二”的。
+
+#### 2. 隐私与效用的权衡分析 (Privacy-Utility Trade-off)
+**结合图表：右图 (Privacy vs. Utility Trade-off Analysis)**
+![Privacy vs. Utility Trade-off Analysis](fig/DistributionAnalysis.png)
+*图2：隐私与效用权衡分析曲线（Privacy vs. Utility Trade-off Analysis）*
+
+*   **观察 (Observation)**：
+    右图展示了随着隐私阈值 $k$ 的增加，信息损失（蓝色实线）呈阶梯状上升。值得注意的是，在 $k=10$ 的位置，我们观察到了一个极佳的**“甜蜜点” (Sweet Spot)**。
+*   **量化分析 (Quantitative Analysis)**：
+    *   **低信息损失**：在 $k=10$ 时，信息损失仅约为 0.02 bits。这是因为虽然我们屏蔽了多个疾病类别，但这些类别加起来的总概率质量（Probability Mass）极小。
+    *   **高隐私覆盖**：尽管信息损失微乎其微，但橙色虚线显示，此时已经有约 1.2% 的高风险人群得到了保护。
+*   **结论 (Conclusion)**：
+    这验证了**率失真理论 (Rate-Distortion Theory)** 在隐私计算中的应用潜力：我们可以通过引入极小的“失真”（合并长尾），换取显著的“安全性”。系统在保留了 98% 以上人群（常见病）精确数据的同时，有效地隐藏了最脆弱人群的隐私。
+
+#### 3. 信道模型视角 (The Channel Coding Perspective)
+*   **理论映射**：
+    我们可以将此脱敏过程建模为一个**离散无记忆信道 (DMC)**。
+    *   输入 $X$：原始诊断结果。
+    *   输出 $Y$：发布的脱敏数据。
+    *   干扰机制：对于长尾数据，信道转移概率 $P(Y|X)$ 不再是确定性的 1对1 映射，而是多对1 映射（Many-to-One Mapping）。
+*   **互信息约束**：
+    这种“多对1”的映射人为地引入了**疑义度 (Equivocation)**，即条件熵 $H(X|Y) > 0$。对于攻击者而言，即便截获了代码 `1000`（代表[MASKED]），他依然无法确定原始输入是 HIV 还是 Ebola。这成功降低了输入与输出之间的互信息 $I(X;Y)$，从而在理论上限制了隐私泄露的上界。
+
+---
 
 ### 六、 运行环境
 - Python 3.8+
