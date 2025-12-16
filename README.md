@@ -95,20 +95,6 @@ Standard Huffman codes are for compression. We tweaked it for **'Asymmetric Mask
 1.  **关联性 (Relevance)**：在报告中一定要多次提及“Lecture Content”（如：Referencing Shannon's 1948 paper, Rate-Distortion function $R(D)$），这直接回应了作业要求中的“relevant to content covered in class”。
 2.  **可视化 (Visualization)**：在报告和PPT中画一棵**Huffman树**，展示原本的树长什么样，为了隐私“剪枝/合并”后的树长什么样。这种直观的对比非常加分。
 3.  **数学表达 (Math)**：既然是“Information Science Theory”课程，报告中至少要列出KL散度的公式 $D_{KL}(P||Q)$ 或互信息公式 $I(X;Y)$，以此证明你的理论深度。
-### 四、 分工表格 (Contribution Table)
-
-根据PDF第2页的要求，需要在报告末尾附上分工。建议如下分配（假设3人）：
-
-| Name | Student ID | Score | Work |
-| :--- | :--- | :--- | :--- |
-| **Member A** | 000... | 35% | **Project Lead & Theory**: Conceptualized the link between Channel Coding and Privacy; wrote the "Theoretical Framework" section; designed the Huffman masking logic. |
-| **Member B** | 000... | 35% | **Application & Analysis**: Developed the Hospital Case Study; calculated the theoretical Privacy/Utility trade-offs (KL Divergence analysis); wrote the "Case Study" section. |
-| **Member C** | 000... | 30% | **Presentation & Editing**: Created the PPT slides; drafted the Spotlight script; managed the final report formatting and LaTeX/PDF compilation. |
-
----
-这份“结果分析与讨论”是小组作业报告中最体现**理论深度**的部分。你需要结合刚才生成的图表（长尾分布图、权衡曲线图）以及代码输出的熵值，用**信息论的语言**来解释实验现象。
-
-以下是一份可以直接插入报告（Section 4: Analysis and Discussion）的文案，包含**中文版**和**英文版**，并标注了与图表的对应关系。
 
 ---
 
