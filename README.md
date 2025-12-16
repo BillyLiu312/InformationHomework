@@ -1,9 +1,3 @@
-这是一个非常精彩且具有深度的选题，完美契合了“信息科学理论”课程关于小组作业的要求（即：涉及经典理论但未在课上深入讲解的应用）。
-
-根据你提供的PDF要求（第3部分 Group Project）以及你设定的命题（信息科学与隐私计算），我为你规划了一份完整的**小组作业执行方案**。这份方案包含了**报告大纲、核心算法设计思路（响应你的Huffman切入点）、Spotlight演讲稿框架**以及**分工表格**。
-
----
-
 ### 一、 小组项目报告大纲 (Project Report Structure)
 
 建议报告标题：
@@ -197,11 +191,3 @@ Standard Huffman codes are for compression. We tweaked it for **'Asymmetric Mask
 | **Member A** (You?) | 000... | 35% | **Project Lead & Theory**: Conceptualized the link between Channel Coding and Privacy; wrote the "Theoretical Framework" section; designed the Huffman masking logic. |
 | **Member B** | 000... | 35% | **Application & Analysis**: Developed the Hospital Case Study; calculated the theoretical Privacy/Utility trade-offs (KL Divergence analysis); wrote the "Case Study" section. |
 | **Member C** | 000... | 30% | **Presentation & Editing**: Created the PPT slides; drafted the Spotlight script; managed the final report formatting and LaTeX/PDF compilation. |
-
----
-
-### 五、 执行建议 (Tips for High Score)
-
-1.  **关联性 (Relevance)**：在报告中一定要多次提及“Lecture Content”（如：Referencing Shannon's 1948 paper, Rate-Distortion function $R(D)$），这直接回应了作业要求中的“relevant to content covered in class”。
-2.  **可视化 (Visualization)**：在报告和PPT中画一棵**Huffman树**，展示原本的树长什么样，为了隐私“剪枝/合并”后的树长什么样。这种直观的对比非常加分。
-3.  **数学表达 (Math)**：既然是“Information Science Theory”课程，报告中至少要列出KL散度的公式 $D_{KL}(P||Q)$ 或互信息公式 $I(X;Y)$，以此证明你的理论深度。
