@@ -178,6 +178,7 @@ def run_advanced_experiment():
 
     # 布局调整
     plt.tight_layout()
+    plt.savefig('fig/DistributionAnalysis.png', dpi=300, bbox_inches='tight')
     plt.show()
 
 if __name__ == "__main__":

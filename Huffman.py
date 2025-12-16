@@ -145,6 +145,7 @@ def run_privacy_experiment():
                 ha="center", fontsize=10, bbox={"facecolor":"orange", "alpha":0.2, "pad":5})
     
     plt.tight_layout()
+    plt.savefig('fig/Huffman.png', dpi=300, bbox_inches='tight')
     plt.show()
 
 if __name__ == "__main__":
