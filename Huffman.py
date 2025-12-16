@@ -5,6 +5,12 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
+# 设置绘图风格，使其看起来更像学术论文
+plt.style.use('ggplot') 
+# 解决中文显示问题 (如果有乱码，可以尝试注释掉这两行，或者换成英文字体)
+plt.rcParams['font.sans-serif'] = ['Arial Unicode MS', 'SimHei', 'DejaVu Sans']
+plt.rcParams['axes.unicode_minus'] = False
+
 # ==========================================
 # 1. 定义基础数据结构与 Huffman 类
 # ==========================================
